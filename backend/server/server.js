@@ -10,7 +10,7 @@ const bodyParser = require("body-parser");
 const SignupSchema = require("./models/SignupModel");
 const BudgetSchema = require("./models/BudgetModel");
 const ExpenseSchema = require("./models/ExpenseModel");
-let url = "mongodb+srv://Sammy:trixie@cluster0.klsnvf4.mongodb.net/";
+let url='mongodb://127.0.0.1:27017/mongodb_demo';
 
 const bcrypt = require("bcrypt");
 const port = 3002;
@@ -20,7 +20,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(compression());
 
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 const secretkey='This is my key'
 
 // const jwtMW = exjwt({
@@ -229,4 +228,7 @@ app.post("/refresh-token/:userId",async(req,res)=>{
 
 app.listen(port, () => {
   console.log(`API served at http://localhost:${port}`);
+  mongoose.connect(url).then(() => {
+    console.log("connected to mongoDB");
+  })
 });
