@@ -4,6 +4,7 @@ import Chart from 'chart.js/auto';
 import * as d3 from 'd3';
 import '../App.scss'; 
 import '../index.scss'; 
+import { baseUrl } from '../constants';
 
 
 const colors = [
@@ -24,7 +25,7 @@ function BarChart() {
     const svgRef = useRef();
 
     useEffect(() => {
-        axios.get('http://159.89.52.202:3002/budget')
+        axios.get(`http://${baseUrl}:3002/budget`)
             .then(response => {
                 const data = response.data.myBudget;
                 const svg = d3.select(svgRef.current);
@@ -92,7 +93,7 @@ function HomePage() {
     const chartRef = useRef(null);
 
     useEffect(() => {
-        axios.get('http://159.89.52.202:3002/budget')
+        axios.get(`http://${baseUrl}:3002/budget`)
             .then(response => {
                 const data = response.data.myBudget;
                 console.log('Data:', data);

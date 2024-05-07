@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import Chart from 'chart.js/auto';
 import Menu from '../Menu/Menu';
+import { baseUrl } from '../constants';
 
 function Visuals() {
   const [dataSource, setDataSource] = useState({
@@ -56,7 +57,7 @@ function Visuals() {
 
     if (selectedMonth) {
       axios
-        .get(`http://159.89.52.202:3002/get-budgets/${userId}?month=${selectedMonth}`, {
+        .get(`http://${baseUrl}:3002/get-budgets/${userId}?month=${selectedMonth}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -86,7 +87,7 @@ function Visuals() {
 
     if (selectedMonth) {
       axios
-        .get(`http://159.89.52.202:3002/get-expenses/${userId}?month=${selectedMonth}`, {
+        .get(`http://${baseUrl}:3002/get-expenses/${userId}?month=${selectedMonth}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

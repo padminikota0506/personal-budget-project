@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../AuthContext';
 import Menu from '../Menu/Menu';
+import { baseUrl } from '../constants';
 
 function ManageExpense() {
  // const { isLoggedIn } = useAuth();
@@ -29,7 +30,7 @@ function ManageExpense() {
         const userId = localStorage.getItem('userId');
         const token = localStorage.getItem('token');
   
-        const categoriesResponse = await axios.get(`http://159.89.52.202:3002/get-categories/${userId}?month=${selectedMonth}`, {
+        const categoriesResponse = await axios.get(`http://${baseUrl}:3002/get-categories/${userId}?month=${selectedMonth}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -59,7 +60,7 @@ function ManageExpense() {
         console.error('Month, category, and expense amount are required');
         return;
       }
-      await axios.post('http://159.89.52.202:3002/add-expense', {
+      await axios.post(`http://${baseUrl}:3002/add-expense`, {
         userId: userId,
         month: selectedMonth,
         category: selectedCategory,

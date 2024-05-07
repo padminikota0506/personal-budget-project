@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Menu from "../Menu/Menu";
+import { baseUrl } from "../constants";
 
 function ConfigureBudgets() {
   const [category, setCategory] = useState("");
@@ -37,7 +38,7 @@ function ConfigureBudgets() {
       const token=localStorage.getItem("token")
       try {
        
-        const response = await axios.get(`http://159.89.52.202:3002/check-existing-budget/${userId}/${selectedMonth}/${category}`,{
+        const response = await axios.get(`http://${baseUrl}:3002/check-existing-budget/${userId}/${selectedMonth}/${category}`,{
           headers:{
             Authorization:`Bearer ${token}`
           }
@@ -78,7 +79,7 @@ function ConfigureBudgets() {
       console.log(token);
       console.log(months);
       await axios.post(
-        "http://159.89.52.202:3002/configure-budgets",
+        `http://${baseUrl}:3002/configure-budgets`,
         {
           userId,
           months: selectedMonth,

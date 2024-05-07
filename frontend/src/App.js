@@ -12,12 +12,11 @@ import Visuals from "./ConfigureBudgets/visuals";
 import { useEffect, useRef, useState } from "react";
 import TokenExpirationPopup from "./TokenExpiration";
 import axios from "axios";
+import { baseUrl } from "./constants";
 function App() {
   const [showPopup, setShowPopup] = useState(false);
   const intervalIdRef = useRef(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
-
 
 useEffect(() => {
   const isLogdIn = localStorage.getItem('isLoggedIn') === 'true';
@@ -61,7 +60,7 @@ const handleRefresh = () => {
     console.log("CHEDKING222", newExpirationTime, Date.now());
     const remainingTime = newExpirationTime - Date.now();
    
-    axios.post(`http://159.89.52.202:3002/refresh-token/${userId}`)
+    axios.post(`http://${baseUrl}:3002/refresh-token/${userId}`)
     .then((res)=>{
       const newtoken=res.data.token
       console.log(newtoken)
