@@ -36,11 +36,11 @@ async function encryptPassword(password) {
 
 
 
-app.use(express.static(path.join(__dirname, '/Users/sameekksha/Desktop/PB-Final/pb.json')));
+app.use(express.static(path.join(__dirname, './pb.json')));
 
 // Route for the login page
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/Users/sameekksha/Desktop/PB-Final/pb.json', 'index.html'));
+  res.sendFile(path.join(__dirname, './pb.json', 'index.html'));
 });
 
 app.get("/intro", (req, res) => {
